@@ -1,9 +1,7 @@
 package com.fanhl.rxcache
 
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.ObservableTransformer
-import java.lang.reflect.Type
 
 /**
  * desc:
@@ -25,25 +23,4 @@ object RxCache {
             provider.put(key, it)
         }
     }
-}
-
-class DefaultCacheProvider : ICacheProvider {
-    override fun <T> get(key: String, type: Type): T? {
-        return Gson().fromJson<T>(cacheStr, type)
-    }
-
-    override fun <T> put(key: String, it: T) {
-        cacheStr = Gson().toJson(it)
-    }
-
-    companion object {
-        var cacheStr: String? = null
-    }
-}
-
-interface ICacheProvider {
-
-    fun <T> get(key: String, type: Type): T?
-
-    fun <T> put(key: String, it: T)
 }
