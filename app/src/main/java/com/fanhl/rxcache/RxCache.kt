@@ -30,7 +30,7 @@ object RxCache {
     }
 }
 
-data class CacheWrap<T>(
+data class CacheWrap<out T>(
         val data: T,
         var type: Type = CacheWrap.Type.Other
 
