@@ -2,6 +2,7 @@ package com.fanhl.rxcache
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import java.lang.reflect.Type
 
@@ -24,6 +25,8 @@ object RxCache {
         currStream.doOnNext { provider.put(key, it) }
     }
 }
+
+fun <T> Observable<T>.rxCache(key: String) = this.compose(RxCache.cache(key))!!
 
 class DefaultCacheProvider : ICacheProvider {
     override fun <T> get(key: String, type: Type): T? {
