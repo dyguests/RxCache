@@ -15,12 +15,23 @@ object RxCache {
     fun <T> cache(key: String) = ObservableTransformer<T, T> { upStream ->
         var currStream = upStream
 
-        val cacheData: T? = provider.get(key, object : TypeToken<T>() {}.type)
+        val cacheData: CacheData<T>? = provider.get(key, object : TypeToken<CacheData<T>>() {}.type)
 
-        cacheData?.let { currStream = currStream.startWith(it) }
+        cacheData?.data?.let { currStream = currStream.startWith(it) }
 
         currStream.doOnNext {
-            provider.put(key, it)
+            provider.put(key, CacheData(it))
         }
+    }
+}
+
+data class CacheData<T>(
+        val data: T,
+        val type: Type = CacheData.Type.Other
+
+) {
+    enum class Type {
+        FromCache,
+        Other
     }
 }
