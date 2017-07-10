@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     it.onNext("io data")
                 }
                 .subscribeOn(Schedulers.io())
-                .compose(RxCache.cache("KEY", String::class.java))
+                .compose(RxCache.cache("KEY"))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }

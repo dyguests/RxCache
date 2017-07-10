@@ -1,7 +1,9 @@
 package com.fanhl.rxcache
 
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.reactivex.ObservableTransformer
+import java.lang.reflect.Type
 
 /**
  * desc:
@@ -12,10 +14,10 @@ import io.reactivex.ObservableTransformer
 object RxCache {
     val provider: ICacheProvider = DefaultCacheProvider()
 
-    fun <T> cache(key: String, clazz: Class<T>) = ObservableTransformer<T, T> { upStream ->
+    fun <T> cache(key: String) = ObservableTransformer<T, T> { upStream ->
         var currStream = upStream
 
-        val cacheData = provider.get(key, clazz)
+        val cacheData: T? = provider.get(key, object : TypeToken<T>() {}.type)
 
         cacheData?.let { currStream = currStream.startWith(it) }
 
@@ -24,8 +26,8 @@ object RxCache {
 }
 
 class DefaultCacheProvider : ICacheProvider {
-    override fun <T> get(key: String, clazz: Class<T>): T? {
-        return Gson().fromJson<T>(cacheStr, clazz)
+    override fun <T> get(key: String, type: Type): T? {
+        return Gson().fromJson<T>(cacheStr, type)
     }
 
     override fun <T> put(key: String, it: T) {
@@ -38,7 +40,8 @@ class DefaultCacheProvider : ICacheProvider {
 }
 
 interface ICacheProvider {
-    fun <T> get(key: String, clazz: Class<T>): T?
+
+    fun <T> get(key: String, type: Type): T?
 
     fun <T> put(key: String, it: T)
 }

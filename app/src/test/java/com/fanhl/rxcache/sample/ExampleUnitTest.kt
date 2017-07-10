@@ -16,7 +16,7 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
 
         Observable.just("dummy data", "dummy data2")
-                .compose(RxCache.cache("KEY", String::class.java))
+                .compose(RxCache.cache("KEY"))
                 .subscribe { println(it) }
     }
 }
