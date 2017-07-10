@@ -13,21 +13,26 @@ object RxCache {
     val provider: ICacheProvider = DefaultCacheProvider()
 
     fun <T> cache(key: String) = ObservableTransformer<T, T> { upStream ->
-        var currStream = upStream
+        var currStream = upStream.map { CacheWrap(it) }
 
-        val cacheData: CacheData<T>? = provider.get(key, object : TypeToken<CacheData<T>>() {}.type)
+        val cacheWrap: CacheWrap<T>? = provider.get(key, object : TypeToken<CacheWrap<T>>() {}.type)
 
-        cacheData?.data?.let { currStream = currStream.startWith(it) }
+        cacheWrap?.let {
+            it.type = CacheWrap.Type.FromCache
+            currStream = currStream.startWith(it)
+        }
 
         currStream.doOnNext {
-            provider.put(key, CacheData(it))
-        }
+            if (it.type != CacheWrap.Type.FromCache) {
+                provider.put(key, it)
+            }
+        }.map { it.data }
     }
 }
 
-data class CacheData<T>(
+data class CacheWrap<T>(
         val data: T,
-        val type: Type = CacheData.Type.Other
+        var type: Type = CacheWrap.Type.Other
 
 ) {
     enum class Type {
