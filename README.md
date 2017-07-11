@@ -6,6 +6,8 @@ A cache mechanism with RxJava2.coding by kotlin.
 
 一套简单的基于rxJava2的缓存机制。使用kotlin编写。
 
+## Need use in RxJava1？See [dyguests/RxCache/tree/rxJava1](https://github.com/dyguests/RxCache/tree/rxJava1)
+
 # Dependency
 
 ## Step 1. Add the JitPack repository to your build file
