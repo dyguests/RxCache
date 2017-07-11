@@ -82,6 +82,11 @@ fun <T> Observable<T>.rcCache(
     ---- ↑load↑ ----------------- ↓save↓ ----------------------->
     - cache cache  cache  cache  cache  cache  cache  cache -----
 
+# TODO
+
+- [ ] RxJava1
+- [ ] RxCacheJava
+
 # License
 
 MIT © dyguests
