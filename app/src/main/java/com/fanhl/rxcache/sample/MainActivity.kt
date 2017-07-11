@@ -3,7 +3,7 @@ package com.fanhl.rxcache.sample
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import com.fanhl.rxcache.RxJache
+import com.fanhl.rxcache.rcCache
 import kotlinx.android.synthetic.main.activity_main.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
                     it.onNext("io data")
                 }
                 .subscribeOn(Schedulers.io())
-//                .rcCache("KEY", "id123", "car233")
-                .compose(RxJache.cache("KEY", "id123", "car233"))
+                .rcCache("KEY", "id123", "car233")
+//                .compose(RxJache.cache("KEY", "id123", "car233"))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
