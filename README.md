@@ -39,11 +39,21 @@ Add it in your app module `build.gradle` at the end of repositories:
 
 ## Step1
 
+### For kotlin
+
 Add `RxCache.init(this)` in YourApplication.onCreate()
+
+### For Java
+
+Point: Rx**J**ache not RxCache.
+
+Add `RxJache.init(this)` in YourApplication.onCreate()
 
 ## Step2
 
 Use it in Rx.
+
+### For kotlin
 
 ```
     .rcCache("KEY", "CONDITION1", "CONDITION2", ...)
@@ -63,6 +73,14 @@ eg.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
+```
+
+### For Java
+
+Point: Rx**J**ache not RxCache.
+
+```
+    .compose(RxJache.cache("KEY", "id123", "car233"))
 ```
 
 # API
