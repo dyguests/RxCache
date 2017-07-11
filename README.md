@@ -4,7 +4,14 @@
 
 #Usage
 
-All need to do is just like this:
+##Step1
+
+Add `RxCache.init(this)` in YourApplication.onCreate()
+
+##Step2
+
+Use it in Rx.
+
 ```
     .rcCache("KEY", "CONDITION1", "CONDITION2", ...)
 ```
