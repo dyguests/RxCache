@@ -106,8 +106,8 @@ fun <T> Observable<T>.rcCache(
 
 # TODO
 
-- [ ] RxJava1
-- [ ] RxCacheJava
+- [x] RxJava1
+- [x] RxCacheJava
 
 # License
 
