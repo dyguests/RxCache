@@ -18,6 +18,7 @@ object RxCache {
         val cacheWrap: CacheWrap<T>? = provider.get(key, object : TypeToken<CacheWrap<T>>() {}.type)
 
         cacheWrap?.let {
+            //以防doOnNext时进行重复缓存
             it.type = CacheWrap.Type.FromCache
             currStream = currStream.startWith(it)
         }

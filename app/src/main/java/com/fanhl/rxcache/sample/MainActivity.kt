@@ -3,7 +3,7 @@ package com.fanhl.rxcache.sample
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import com.fanhl.rxcache.rxCache
+import com.fanhl.rxcache.rcCache
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     it.onNext("io data")
                 }
                 .subscribeOn(Schedulers.io())
-                .rxCache("KEY")
+                .rcCache("KEY")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
