@@ -37,7 +37,15 @@ Add it in your app module `build.gradle` at the end of repositories:
 
 ## Step1
 
+### For kotlin
+
 Add `RxCache.init(this)` in YourApplication.onCreate()
+
+### For Java
+
+Point: Rx**J**ache not RxCache.
+
+Add `RxJache.init(this)` in YourApplication.onCreate()
 
 ## Step2
 
