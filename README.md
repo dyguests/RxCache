@@ -1,16 +1,41 @@
-#RxCache
+# RxCache
 
 A cache mechanism with RxJava2.coding by kotlin.
 
 一套简单的基于rxJava2的缓存机制。使用kotlin编写。
 
-#Usage
+# Dependency
 
-##Step1
+## Step 1. Add the JitPack repository to your build file
+
+Add it in your root `build.gradle` at the end of repositories:
+
+```groovy
+    allprojects {
+        repositories {
+            //...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+```
+
+## Step 2. Add the dependency
+
+Add it in your app module `build.gradle` at the end of repositories:
+
+```groovy
+    dependencies {
+            compile 'com.github.dyguests:RxCache:0.1.0'
+    }
+```
+
+# Usage
+
+## Step1
 
 Add `RxCache.init(this)` in YourApplication.onCreate()
 
-##Step2
+## Step2
 
 Use it in Rx.
 
@@ -34,7 +59,7 @@ eg.
     }
 ```
 
-#API
+# API
 
 ```kotlin
 fun <T> Observable<T>.rcCache(
@@ -43,18 +68,18 @@ fun <T> Observable<T>.rcCache(
 )
 ```
 
-#Logic
+# Logic
 
-###Before:
+### Before:
 
     ---------------------------- io data ----------------------->
 
-###After:
+### After:
 
     -- cache data -------------- io data ----------------------->
     ---- ↑load↑ ----------------- ↓save↓ ----------------------->
     - cache cache  cache  cache  cache  cache  cache  cache -----
 
-#License
+# License
 
 MIT © dyguests
