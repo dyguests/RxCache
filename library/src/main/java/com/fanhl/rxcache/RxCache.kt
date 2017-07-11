@@ -13,8 +13,11 @@ import io.reactivex.ObservableTransformer
 object RxCache {
     var provider: ICacheProvider? = null
 
+    /**
+     * This method should be called in Application.onCreate()
+     */
     fun init(context: Context) {
-//        provider = DefaultCacheProvider(context)
+        provider = SharePreferenceCacheProvider(context)
     }
 
     fun <T> cache(

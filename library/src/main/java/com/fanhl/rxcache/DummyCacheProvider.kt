@@ -3,7 +3,7 @@ package com.fanhl.rxcache
 import com.google.gson.Gson
 import java.lang.reflect.Type
 
-class DefaultCacheProvider : ICacheProvider {
+class DummyCacheProvider : ICacheProvider {
     override fun <T> get(key: String, type: Type): T? {
         return Gson().fromJson<T>(cacheStr, type)
     }
