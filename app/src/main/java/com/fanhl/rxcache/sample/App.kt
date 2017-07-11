@@ -14,5 +14,6 @@ class App : Application(){
         super.onCreate()
 
         RxCache.init(this)
+//        RxJache.init(this)
     }
 }
