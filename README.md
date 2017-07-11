@@ -1,5 +1,7 @@
 # RxCache
 
+[![](https://jitpack.io/v/dyguests/RxCache.svg)](https://jitpack.io/#dyguests/RxCache)
+
 A cache mechanism with RxJava2.coding by kotlin.
 
 一套简单的基于rxJava2的缓存机制。使用kotlin编写。
