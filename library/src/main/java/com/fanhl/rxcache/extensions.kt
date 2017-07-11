@@ -1,6 +1,6 @@
 package com.fanhl.rxcache
 
-import io.reactivex.Observable
+import rx.Observable
 
 /**
  * desc:

@@ -2,7 +2,7 @@ package com.fanhl.rxcache
 
 import android.content.Context
 import com.google.gson.reflect.TypeToken
-import io.reactivex.ObservableTransformer
+import rx.Observable
 
 /**
  * desc:
@@ -23,7 +23,7 @@ object RxCache {
     fun <T> cache(
             name: String,
             vararg conditions: String
-    ) = ObservableTransformer<T, T> { upStream ->
+    ) = Observable.Transformer<T, T> { upStream ->
         checkInit()
 
         val key = name + "-" + conditions.joinToString("-")
