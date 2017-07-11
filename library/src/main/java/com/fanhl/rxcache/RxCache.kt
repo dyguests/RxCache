@@ -12,7 +12,12 @@ import io.reactivex.ObservableTransformer
 object RxCache {
     val provider: ICacheProvider = DefaultCacheProvider()
 
-    fun <T> cache(key: String) = ObservableTransformer<T, T> { upStream ->
+    fun <T> cache(
+            name: String,
+            vararg conditions: String
+    ) = ObservableTransformer<T, T> { upStream ->
+        val key = name + "-" + conditions.joinToString("-")
+
         var currStream = upStream.map { CacheWrap(it) }
 
         val cacheWrap: CacheWrap<T>? = provider.get(key, object : TypeToken<CacheWrap<T>>() {}.type)
@@ -30,4 +35,3 @@ object RxCache {
         }.map { it.data }
     }
 }
-
