@@ -43,6 +43,8 @@ Add `RxCache.init(this)` in YourApplication.onCreate()
 
 Use it in Rx.
 
+### For kotlin
+
 ```
     .rcCache("KEY", "CONDITION1", "CONDITION2", ...)
 ```
@@ -61,6 +63,14 @@ eg.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
+```
+
+### For Java
+
+Point: Rx**J**ache not RxCache.
+
+```
+    .compose(RxJache.cache("KEY", "id123", "car233"))
 ```
 
 # API
