@@ -31,7 +31,7 @@ Add it in your app module `build.gradle` at the end of repositories:
 
 ```groovy
     dependencies {
-            compile 'com.github.dyguests:RxCache:0.1.0'
+            compile 'com.github.dyguests:RxCache:0.2.0'
     }
 ```
 
