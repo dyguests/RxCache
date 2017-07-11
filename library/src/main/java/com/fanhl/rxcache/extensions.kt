@@ -9,4 +9,7 @@ import io.reactivex.Observable
  * @author fanhl
  */
 
-fun <T> Observable<T>.rcCache(key: String) = this.compose(RxCache.cache(key))!!
+fun <T> Observable<T>.rcCache(
+        name: String,
+        vararg conditions: String
+) = this.compose(RxCache.cache(name, *conditions))!!
