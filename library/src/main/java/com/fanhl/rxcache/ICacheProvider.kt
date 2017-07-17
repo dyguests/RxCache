@@ -6,5 +6,5 @@ interface ICacheProvider {
 
     fun <T> get(key: String, type: Type): T?
 
-    fun <T> put(key: String, it: T)
+    fun <T> put(key: String, obj: T)
 }

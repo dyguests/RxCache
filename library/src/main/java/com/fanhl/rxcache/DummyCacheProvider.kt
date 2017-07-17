@@ -8,8 +8,8 @@ class DummyCacheProvider : ICacheProvider {
         return Gson().fromJson<T>(cacheStr, type)
     }
 
-    override fun <T> put(key: String, it: T) {
-        cacheStr = Gson().toJson(it)
+    override fun <T> put(key: String, obj: T) {
+        cacheStr = Gson().toJson(obj)
     }
 
     companion object {

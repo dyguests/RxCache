@@ -13,8 +13,8 @@ class SharePreferenceCacheProvider(val context: Context) : ICacheProvider {
         return Gson().fromJson<T>(value, type)
     }
 
-    override fun <T> put(key: String, it: T) {
-        val value = Gson().toJson(it)
+    override fun <T> put(key: String, obj: T) {
+        val value = Gson().toJson(obj)
         sharedPreferences.edit().putString(key, value).apply()
     }
 
