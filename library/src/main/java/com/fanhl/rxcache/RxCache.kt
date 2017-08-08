@@ -26,7 +26,7 @@ object RxCache {
     ) = ObservableTransformer<T, T> { upStream ->
         checkInit()
 
-        val key = name + "-" + conditions.joinToString("-")
+        val key = arrayOf(name, *conditions).joinToString { "-" }
 
         var currStream = upStream.map { CacheWrap(it) }
 
