@@ -6,6 +6,8 @@ A cache mechanism with RxJava2,save in SharePreference.coding by kotlin.
 
 一套简单的基于rxJava2的缓存机制，缓存保存存在SharePreference中。使用kotlin编写。
 
+**已解决泛型擦除的问题，工发者不用管泛型的问题。**
+
 ## Need use in RxJava1？See [dyguests/RxCache/tree/rxJava1](https://github.com/dyguests/RxCache/tree/rxJava1)
 
 # Dependency
@@ -39,21 +41,11 @@ Add it in your app module `build.gradle` at the end of repositories:
 
 ## Step1
 
-### For kotlin
-
 Add `RxCache.init(this)` in YourApplication.onCreate()
-
-### For Java
-
-Point: Rx**J**ache not RxCache.
-
-Add `RxJache.init(this)` in YourApplication.onCreate()
 
 ## Step2
 
 Use it in Rx.
-
-### For kotlin
 
 ```
     .rcCache("KEY", "CONDITION1", "CONDITION2", ...)
@@ -73,14 +65,6 @@ eg.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
-```
-
-### For Java
-
-Point: Rx**J**ache not RxCache.
-
-```
-    .compose(RxJache.cache("KEY", "id123", "car233"))
 ```
 
 # API
@@ -108,6 +92,7 @@ fun <T> Observable<T>.rcCache(
 
 - [x] RxJava1
 - [x] RxCacheJava
+- [x] 解决泛型擦除问题
 
 # License
 
