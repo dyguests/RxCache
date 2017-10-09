@@ -2,9 +2,9 @@
 
 [![](https://jitpack.io/v/dyguests/RxCache.svg)](https://jitpack.io/#dyguests/RxCache)
 
-A cache mechanism with RxJava2.coding by kotlin.
+A cache mechanism with RxJava2,save in SharePreference.coding by kotlin.
 
-一套简单的基于rxJava2的缓存机制。使用kotlin编写。
+一套简单的基于rxJava2的缓存机制，缓存保存存在SharePreference中。使用kotlin编写。
 
 ## Need use in RxJava1？See [dyguests/RxCache/tree/rxJava1](https://github.com/dyguests/RxCache/tree/rxJava1)
 
