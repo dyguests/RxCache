@@ -3,6 +3,7 @@ package com.fanhl.rxcache
 import android.content.Context
 import com.google.gson.reflect.TypeToken
 import io.reactivex.ObservableTransformer
+import java.lang.reflect.Type
 
 /**
  * desc:
@@ -22,7 +23,8 @@ object RxCache {
 
     fun <T> cache(
             name: String,
-            vararg conditions: String
+            vararg conditions: String,
+            type: Type? = null
     ) = ObservableTransformer<T, T> { upStream ->
         checkInit()
 
@@ -30,7 +32,7 @@ object RxCache {
 
         var currStream = upStream.map { CacheWrap(it) }
 
-        val cacheWrap: CacheWrap<T>? = provider!!.get(key, object : TypeToken<CacheWrap<T>>() {}.type)
+        val cacheWrap: CacheWrap<T>? = provider!!.get(key, type ?: object : TypeToken<CacheWrap<T>>() {}.type)
 
         cacheWrap?.let {
             //以防doOnNext时进行重复缓存

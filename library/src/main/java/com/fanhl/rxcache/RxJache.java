@@ -4,6 +4,8 @@ import android.content.Context;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Type;
+
 import io.reactivex.ObservableTransformer;
 
 /**
@@ -19,8 +21,12 @@ public class RxJache {
 
     @NotNull
     public static <T> ObservableTransformer<T, T> cache(@NotNull String name, String... conditions) {
-        return RxCache.INSTANCE.cache(name, conditions);
+        return RxCache.INSTANCE.cache(name, conditions, null);
     }
 
+    @NotNull
+    public static <T> ObservableTransformer<T, T> cache(@NotNull String name, Type type, String... conditions) {
+        return RxCache.INSTANCE.cache(name, conditions, type);
+    }
 
 }
