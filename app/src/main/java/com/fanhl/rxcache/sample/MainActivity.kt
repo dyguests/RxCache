@@ -3,9 +3,7 @@ package com.fanhl.rxcache.sample
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import com.fanhl.rxcache.CacheWrap
 import com.fanhl.rxcache.rcCache
-import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     it.onNext(Data("io data"))
                 }
                 .subscribeOn(Schedulers.io())
-                .rcCache("KEY", "id123", "car233", type = object : TypeToken<CacheWrap<Data>>() {}.type)
+                .rcCache("KEY", "id123", "car233"/*, type = object : TypeToken<CacheWrap<Data>>() {}.type*/)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {

@@ -3,7 +3,6 @@ package com.fanhl.rxcache
 import android.content.Context
 import com.google.gson.reflect.TypeToken
 import io.reactivex.ObservableTransformer
-import java.lang.reflect.Type
 
 /**
  * desc:
@@ -21,10 +20,9 @@ object RxCache {
         provider = SharePreferenceCacheProvider(context)
     }
 
-    fun <T> cache(
+    inline fun <reified T> cache(
             name: String,
-            vararg conditions: String,
-            type: Type? = null
+            vararg conditions: String
     ) = ObservableTransformer<T, T> { upStream ->
         checkInit()
 
@@ -32,7 +30,7 @@ object RxCache {
 
         var currStream = upStream.map { CacheWrap(it) }
 
-        val cacheWrap: CacheWrap<T>? = provider!!.get(key, type ?: object : TypeToken<CacheWrap<T>>() {}.type)
+        val cacheWrap: CacheWrap<T>? = provider!!.get(key, object : TypeToken<CacheWrap<T>>() {}.type)
 
         cacheWrap?.let {
             //以防doOnNext时进行重复缓存
@@ -47,7 +45,7 @@ object RxCache {
         }.map { it.data }
     }
 
-    private fun checkInit() {
+    fun checkInit() {
         if (provider == null) {
             throw Exception("""Provider not init.
 may be you forget call RxCache.init().
