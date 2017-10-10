@@ -33,7 +33,7 @@ Add it in your app module `build.gradle` at the end of repositories:
 
 ```groovy
     dependencies {
-            compile 'com.github.dyguests:RxCache:0.2.0'
+            compile 'com.github.dyguests:RxCache:0.3.2'
     }
 ```
 
@@ -61,7 +61,7 @@ eg.
                     it.onNext("io data")
                 }
                 .subscribeOn(Schedulers.io())
-                .rcCache("KEY", "id123", "car233")
+                .rcCache("KEY", "id123", 2333,true,12.34f)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { print(it) }
     }
