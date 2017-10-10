@@ -28,14 +28,8 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .rcCache("KEY", "id123", 123, 12.3f, true)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            print(it.toString())
-                        },
-                        {
-                            print("error")
-                        }
-                )
+                .subscribe { print(it.toString()) }
+
     }
 
     private fun print(msg: String) {
