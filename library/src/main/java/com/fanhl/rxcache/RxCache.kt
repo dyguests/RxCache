@@ -22,11 +22,11 @@ object RxCache {
 
     inline fun <reified T> cache(
             name: String,
-            vararg conditions: String
+            vararg conditions: Any
     ) = ObservableTransformer<T, T> { upStream ->
         checkInit()
 
-        val key = arrayOf(name, *conditions).joinToString ( "-" )
+        val key = arrayOf(name, *conditions).joinToString("-")
 
         var currStream = upStream.map { CacheWrap(it) }
 
