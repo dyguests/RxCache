@@ -21,7 +21,7 @@ object RxCache {
     }
 
     inline fun <reified T> cache(
-            name: String,
+            name: Any,
             vararg conditions: Any
     ) = ObservableTransformer<T, T> { upStream ->
         checkInit()
