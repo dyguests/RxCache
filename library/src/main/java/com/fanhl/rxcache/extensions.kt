@@ -11,6 +11,5 @@ import io.reactivex.Observable
 
 inline fun <reified T> Observable<T>.rcCache(
         name: Any,
-        vararg conditions: Any,
-        function: (T) -> Unit
+        vararg conditions: Any
 ) = this.compose(RxCache.cache(name, *conditions))!!
