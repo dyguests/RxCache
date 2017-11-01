@@ -1,6 +1,7 @@
 package com.fanhl.rxcache
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.reflect.TypeToken
 import io.reactivex.ObservableTransformer
 
@@ -11,13 +12,23 @@ import io.reactivex.ObservableTransformer
  * @author fanhl
  */
 object RxCache {
+    /** 已初始化过了 */
+    var inited = false
     var provider: ICacheProvider? = null
-
     /**
-     * This method should be called in Application.onCreate()
+     * This method should be called in Application.onCreate() only once.
      */
     fun init(context: Context) {
+        checkInited()
         provider = SharePreferenceCacheProvider(context)
+    }
+
+    /**
+     * This method should be called in Application.onCreate() only once.
+     */
+    fun init(sharedPreferences: SharedPreferences) {
+        checkInited()
+        provider = SharePreferenceCacheProvider(sharedPreferences)
     }
 
     inline fun <reified T> cache(
@@ -53,4 +64,13 @@ Remember call init() before cache().
 Please call init() in YourApplication.""")
         }
     }
+
+    private fun checkInited() {
+        if (!inited) {
+            inited = true
+        } else {
+            throw Exception("""RxCache can only init once.""")
+        }
+    }
+
 }

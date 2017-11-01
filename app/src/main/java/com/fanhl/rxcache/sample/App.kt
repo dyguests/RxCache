@@ -1,6 +1,7 @@
 package com.fanhl.rxcache.sample
 
 import android.app.Application
+import android.preference.PreferenceManager
 import com.fanhl.rxcache.RxCache
 
 /**
@@ -9,10 +10,11 @@ import com.fanhl.rxcache.RxCache
 
  * @author fanhl
  */
-class App : Application(){
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        RxCache.init(this)
+//        RxCache.init(this)
+        RxCache.init(PreferenceManager.getDefaultSharedPreferences(this))
     }
 }
