@@ -93,6 +93,7 @@ fun <T> Observable<T>.rcCache(
 - [x] RxJava1
 - [x] RxCacheJava
 - [x] 解决泛型擦除问题
+- [x] 添加初始化方法
 
 # License
 
